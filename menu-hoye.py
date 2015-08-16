@@ -22,8 +22,8 @@ import calendar
 from peewee import *
 
 
-database = SqliteDatabase('9510305.sqlite', **{})
-#database = SqliteDatabase('/storage/extSdCard/mydb/9510305.sqlite', **{})
+#database = SqliteDatabase('9510305.sqlite', **{})
+database = SqliteDatabase('/storage/extSdCard/mydb/9510305.sqlite', **{})
 
 class BaseModel(Model):
     class Meta:
@@ -217,7 +217,7 @@ menu_actions = {
     'cv': calendarview,
     'mh': masukhoye,
     '9': back,
-    '0': exit,
+    'q': exit,
 }
 
 # =======================
