@@ -186,6 +186,31 @@ def carihoye():
     exec_menu(choice)
     return
 
+def masuksoru():
+    tarikh = raw_input("Masukkan tarikh: \n")
+    if tarikh == "":
+        tarikh = today.strftime("%Y%m%d")
+    else:
+        tarikh = tarikh
+    print tarikh
+
+    perkara = raw_input("Masukkan perkara: \n")
+    perkara = perkara.strip()
+
+    rm = raw_input("Masukkan RM: \n")
+    rm = rm.strip()
+    simpan = Soruogos2014.insert(tarikh=tarikh,perkara=perkara, rm=rm).execute()
+    print "\n"+tarikh+"::"+perkara+" : "+rm
+    belanja =\
+    Soruogos2014.select(fn.Sum(Soruogos2014.rm)).where(Soruogos2014.tarikh ==\
+                                                      tarikh).scalar()
+    print "Jumlah hari ini : RM "+str(belanja)
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+
 def calendarview():
     bulan = raw_input("\nMasukkan bulan [MM]: \n")
     tahunini = int(datetime.datetime.now().year)
@@ -216,6 +241,7 @@ menu_actions = {
     'ch': carihoye,
     'cv': calendarview,
     'mh': masukhoye,
+    'ms': masuksoru,
     '9': back,
     'q': exit,
 }
