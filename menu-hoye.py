@@ -22,8 +22,8 @@ import calendar
 from peewee import *
 
 
-#database = SqliteDatabase('9510305.sqlite', **{})
-database = SqliteDatabase('/storage/extSdCard/mydb/9510305.sqlite', **{})
+database = SqliteDatabase('9510305.sqlite', **{})
+#database = SqliteDatabase('/storage/extSdCard/mydb/9510305.sqlite', **{})
 
 class BaseModel(Model):
     class Meta:
@@ -204,6 +204,12 @@ def masuksoru():
     belanja =\
     Soruogos2014.select(fn.Sum(Soruogos2014.rm)).where(Soruogos2014.tarikh ==\
                                                       tarikh).scalar()
+    senarai =\
+    Soruogos2014.select().where(Soruogos2014.tarikh == tarikh)
+    print "="*40
+    for i in senarai:
+        print i.perkara, i.rm
+    print "="*40
     print "Jumlah hari ini : RM "+str(belanja)
     print "9. Back"
     print "0. Quit" 
