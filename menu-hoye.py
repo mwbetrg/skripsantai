@@ -22,8 +22,8 @@ import calendar
 from peewee import *
 
 
-database = SqliteDatabase('9510305.sqlite', **{})
-#database = SqliteDatabase('/storage/extSdCard/mydb/9510305.sqlite', **{})
+#database = SqliteDatabase('9510305.sqlite', **{})
+database = SqliteDatabase('/storage/extSdCard/mydb/9510305.sqlite', **{})
 
 class BaseModel(Model):
     class Meta:
@@ -217,6 +217,34 @@ def masuksoru():
     exec_menu(choice)
     return
 
+def semaktarikh():
+    tarikh = raw_input("Masukkan tarikh: \n")
+    if tarikh == "":
+        tarikh = today.strftime("%Y%m%d")
+    else:
+        tarikh = tarikh
+    print tarikh
+    senarai =\
+    Soruogos2014.select().where(Soruogos2014.tarikh == tarikh)
+    print "="*40
+    for i in senarai:
+        print i.perkara, i.rm
+    print "="*40
+    belanja =\
+    Soruogos2014.select(fn.Sum(Soruogos2014.rm)).where(Soruogos2014.tarikh ==\
+                                                      tarikh).scalar()
+    print "Jumlah hari ini : RM "+str(belanja)
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+
+
+    perkara = raw_input("Masukkan perkara: \n")
+    perkara = perkara.strip()
+
+
 def calendarview():
     bulan = raw_input("\nMasukkan bulan [MM]: \n")
     tahunini = int(datetime.datetime.now().year)
@@ -248,6 +276,7 @@ menu_actions = {
     'cv': calendarview,
     'mh': masukhoye,
     'ms': masuksoru,
+    'st': semaktarikh,
     '9': back,
     'q': exit,
 }
