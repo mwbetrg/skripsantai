@@ -240,9 +240,23 @@ def semaktarikh():
     exec_menu(choice)
     return
 
-
     perkara = raw_input("Masukkan perkara: \n")
     perkara = perkara.strip()
+
+def semakperkara():
+    perkara = raw_input("Masukkan perkara: \n")
+    u =\
+    Soruogos2014.select().where(Soruogos2014.perkara.contains(perkara)).order_by(Soruogos2014.tarikh)
+    print "="*20
+    for i in u:
+        print str(i.tarikh)+" :"+" : "+str(i.perkara)+" : "+str(i.rm)
+    print "="*20
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+
 
 
 def calendarview():
@@ -276,6 +290,7 @@ menu_actions = {
     'cv': calendarview,
     'mh': masukhoye,
     'ms': masuksoru,
+    'sp': semakperkara,
     'st': semaktarikh,
     '9': back,
     'q': exit,
