@@ -22,7 +22,7 @@ t = Twitter(auth=OAuth(ACCESS_TOKEN,
 
 #print t.statuses.home_timeline(count=5)
 
-#t.statuses.update(status="Testing another twitter client")
+t.statuses.update(status="Peace be upon Prophet Muhammad")
 
 #print t.search.tweets(q="#najib")
 
