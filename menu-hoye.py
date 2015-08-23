@@ -127,7 +127,7 @@ menu_actions  = {}
 def main_menu():
     os.system('clear')
     
-    print "Selamat Datang\n"
+    print ":: Hoye ::\n"
     print "Sila pilih menu yang dikehendaki:"
     print "1. Menu 1"
     print "2. Menu 2"
