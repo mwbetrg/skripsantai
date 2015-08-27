@@ -21,9 +21,12 @@ import time
 import calendar
 from peewee import *
 
+if os.path.exists('/storage/extSdCard'):
+    database = SqliteDatabase('/storage/extSdCard/mydb/9510305.sqlite', **{})
+else:
+    database = SqliteDatabase('9510305.sqlite', **{})
 
-#database = SqliteDatabase('9510305.sqlite', **{})
-database = SqliteDatabase('/storage/extSdCard/mydb/9510305.sqlite', **{})
+
 
 class BaseModel(Model):
     class Meta:
