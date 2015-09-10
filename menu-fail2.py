@@ -70,7 +70,11 @@ def exec_menu(choice):
 #-----------------------------------------------------------------------    
 
 def deletewhatsappdatabases():
-    os.remove(glob('/tmp/*.txt'))
+    selecteddir = '/storage/emulated/0/WhatsApp/Databases/'
+    for f in os.listdir(selecteddir):
+        print f
+        if re.search('msgstore-20*crypt8'):
+            os.remove(os.path.join(selecteddir, f))
     print "9. Back"
     print "0. Quit" 
     choice = raw_input(" >>  ")

@@ -22,21 +22,6 @@ import calendar
 from peewee import *
 from glob import glob
 
-if os.path.exists('/storage/extSdCard'):
-    database = SqliteDatabase('/storage/extSdCard/mydb/9510305.sqlite', **{})
-else:
-    database = SqliteDatabase('9510305.sqlite', **{})
-
-
-# Back to main menu
-def back():
-    menu_actions['main_menu']()
-
-# Exit program
-def exit():
-    sys.exit()
-
-
 
 today = datetime.datetime.today()
 tomorrow = today + datetime.timedelta(days=1)
@@ -84,14 +69,18 @@ def exec_menu(choice):
 
 #-----------------------------------------------------------------------    
 
-def deletewhatsappdatabase():
-    #os.remove(glob('/storage/emulated/0/WhatsApp/Databases/msgstore-20*.db.crypt8'))
-    os.remove(glob('/tmp/*.txt'))
+def deletewhatsappdatabases():
+    selecteddir = '/storage/emulated/0/WhatsApp/Databases/'
+    for f in os.listdir(selecteddir):
+        print f
+        if re.search('msgstore-20*crypt8'):
+            os.remove(os.path.join(selecteddir, f))
     print "9. Back"
     print "0. Quit" 
     choice = raw_input(" >>  ")
     exec_menu(choice)
     return
+
 
 def calendarview():
     bulan = raw_input("\nMasukkan bulan [MM]: \n")
@@ -104,7 +93,15 @@ def calendarview():
     return
 
 
+    
 
+# Back to main menu
+def back():
+    menu_actions['main_menu']()
+
+# Exit program
+def exit():
+    sys.exit()
 
 # =======================
 #    MENUS DEFINITIONS
@@ -113,7 +110,7 @@ def calendarview():
 # Menu definition
 menu_actions = {
     'cv': calendarview,
-    'dwd': deletewhatsappdatabase,
+    'dwd': deletewhatsappdatabases,
     '9': back,
     'q': exit,
 }
