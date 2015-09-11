@@ -81,6 +81,49 @@ def deletewhatsappdatabases():
     exec_menu(choice)
     return
 
+def deletewordfiles():
+    selecteddir = '/storage/extSdCard/texdocs/wotd/'
+    for f in os.listdir(selecteddir):
+        print f
+        if re.search('wotd-20(.*).jpg'):
+            os.remove(os.path.join(selecteddir, f))
+        if re.search('wotd-20(.*).aux'):
+            os.remove(os.path.join(selecteddir, f))
+        if re.search('wotd-20(.*).log'):
+            os.remove(os.path.join(selecteddir, f))
+        if re.search('wotd-20(.*).pdf'):
+            os.remove(os.path.join(selecteddir, f))
+        if re.search('wotd-20(.*).pdf.jpg'):
+            os.remove(os.path.join(selecteddir, f))
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+
+def deleteidiomfiles():
+    selecteddir = '/storage/extSdCard/texdocs/iotd/'
+    for f in os.listdir(selecteddir):
+        print f
+        if re.search('iotd-20(.*).jpg'):
+            os.remove(os.path.join(selecteddir, f))
+        if re.search('iotd-20(.*).aux'):
+            os.remove(os.path.join(selecteddir, f))
+        if re.search('iotd-20(.*).log'):
+            os.remove(os.path.join(selecteddir, f))
+        if re.search('iotd-20(.*).pdf'):
+            os.remove(os.path.join(selecteddir, f))
+        if re.search('iotd-20(.*).pdf.jpg'):
+            os.remove(os.path.join(selecteddir, f))
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+
+def deleteenglishfiles():
+    deletewordfiles()
+    deleteidiomfiles()
 
 def calendarview():
     bulan = raw_input("\nMasukkan bulan [MM]: \n")
@@ -92,8 +135,6 @@ def calendarview():
     exec_menu(choice)
     return
 
-
-    
 
 # Back to main menu
 def back():
@@ -111,6 +152,7 @@ def exit():
 menu_actions = {
     'cv': calendarview,
     'dwd': deletewhatsappdatabases,
+    'def': deleteenglishfiles,
     '9': back,
     'q': exit,
 }
